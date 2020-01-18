@@ -62,13 +62,13 @@ public class SampleController implements Initializable {
    
    // variables 
    
-    public GraphicsContext gcb, gcf; // canvas¿¡ »ö Ãâ·Â  gcf-canvas gcb-canvasef 
+    public GraphicsContext gcb, gcf; // canvasì— ìƒ‰ ì¶œë ¥  gcf-canvas gcb-canvasef 
     public boolean freedesign = true, erase = false, drawline = false,
-          drawoval = false,drawrectangle = false; //true false·Î Å°°í ²ô±â
+          drawoval = false,drawrectangle = false; //true falseë¡œ í‚¤ê³  ë„ê¸°
     double startX, startY, lastX,lastY,oldX,oldY,holdX,holdY;
     double hg;
 
-//          c= Color.rgb(244,244,244); // ±×¸²ÆÇ ¹è°æ »ö 
+//          c= Color.rgb(244,244,244); // ê·¸ë¦¼íŒ ë°°ê²½ ìƒ‰ 
     // FXML
    
    @FXML 
@@ -83,17 +83,17 @@ public class SampleController implements Initializable {
     public Slider sizeSlider;
     
    @FXML
-      public void onMousePressedListener(MouseEvent e){ //Á÷¼± ¹× µµÇü ±×¸± ¶§ ½ÃÀÛ ³¡ ÀúÀå 
+      public void onMousePressedListener(MouseEvent e){ //ì§ì„  ë° ë„í˜• ê·¸ë¦´ ë•Œ ì‹œì‘ ë ì €ì¥ 
          this.startX = e.getX();
          this.startY = e.getY();
          this.oldX = e.getX();
          this.oldY = e.getY();
       }
     @FXML
-       public void onMouseDraggedListener(MouseEvent e){ // ¸¶¿ì½º ¿òÁ÷ÀÓ ÀúÀå
+       public void onMouseDraggedListener(MouseEvent e){ // ë§ˆìš°ìŠ¤ ì›€ì§ì„ ì €ì¥
            this.lastX = e.getX();
            this.lastY = e.getY();
-              // µå·¡±× ÇÒ ¶§ ÇÔ¼öµé È£Ãâ ¹× ¾Ë°í¸®Áò 
+              // ë“œë˜ê·¸ í•  ë•Œ í•¨ìˆ˜ë“¤ í˜¸ì¶œ ë° ì•Œê³ ë¦¬ì¦˜ 
            if(drawrectangle)
                drawRectEffect();
            if(drawoval)
@@ -132,14 +132,14 @@ public class SampleController implements Initializable {
      
      @FXML
        public void onMouseExitedListener(MouseEvent event)
-       { //½ÇÇè
+       { //ì‹¤í—˜
 //           System.out.println("mouse exited");
        }
      
      // draw method
    
    
-        private void drawOval() //Å¸¿ø ±×¸®´Â ¸Ş¼Òµå 
+        private void drawOval() //íƒ€ì› ê·¸ë¦¬ëŠ” ë©”ì†Œë“œ 
        {
            double wh = lastX - startX;
            double hg = lastY - startY;
@@ -155,7 +155,7 @@ public class SampleController implements Initializable {
            }
        }
 
-       private void drawRect() //»ç°¢Çü ±×¸®´Â ¸Ş¼Òµå 
+       private void drawRect() //ì‚¬ê°í˜• ê·¸ë¦¬ëŠ” ë©”ì†Œë“œ 
        {
            double wh = lastX - startX;
            double hg = lastY - startY;
@@ -173,7 +173,7 @@ public class SampleController implements Initializable {
            }
        }
 
-       private void drawLine() //¼± ±×¸®´Â ¸Ş¼Òµå 
+       private void drawLine() //ì„  ê·¸ë¦¬ëŠ” ë©”ì†Œë“œ 
        {   
           if(drawline) {
           gcf.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -183,25 +183,25 @@ public class SampleController implements Initializable {
           }
        }
 
-       public void freeDrawing() // ¸¶¿ì½º ÀÌ¿ë ±×¸®±â  ¸Ş¼Òµå 
+       public void freeDrawing() // ë§ˆìš°ìŠ¤ ì´ìš© ê·¸ë¦¬ê¸°  ë©”ì†Œë“œ 
        {
           gcf.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 //          gcb.setLineWidth(5);
            gcb.setLineWidth(sizeSlider.getValue());
            gcb.setStroke(colorpick.getValue());
            gcb.strokeLine(oldX, oldY, lastX, lastY);
-          //¸¶¿ì½º ÀÌº¥Æ®¿¡¼­ À§Ä¡ ¹Ş¾Æ¿È 
+          //ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ì—ì„œ ìœ„ì¹˜ ë°›ì•„ì˜´ 
            oldX = lastX;
            oldY = lastY;
        }
-       private void erase() { // Áö¿ì°³ ¸Ş¼Òµå 
+       private void erase() { // ì§€ìš°ê°œ ë©”ì†Œë“œ 
           if(erase) {
              gcf.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 //             gcb.setLineWidth(5);
               gcb.setLineWidth(sizeSlider.getValue());
               gcb.setStroke(Color.WHITE);
               gcb.strokeLine(oldX, oldY, lastX, lastY);
-             //¸¶¿ì½º ÀÌº¥Æ®¿¡¼­ À§Ä¡ ¹Ş¾Æ¿È 
+             //ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ì—ì„œ ìœ„ì¹˜ ë°›ì•„ì˜´ 
               oldX = lastX;
               oldY = lastY;
               
@@ -213,7 +213,7 @@ public class SampleController implements Initializable {
        
        
        
-        // µµÇü ±×¸± ¶§ È¿°ú 
+        // ë„í˜• ê·¸ë¦´ ë•Œ íš¨ê³¼ 
        
        
        private void drawOvalEffect()
@@ -379,12 +379,12 @@ Sample.fxml
       <TextField fx:id="Talk" layoutX="247.0" layoutY="749.0" prefHeight="29.0" prefWidth="1019.0" />
       <TextArea fx:id="TalkBoard" layoutX="247.0" layoutY="502.0" prefHeight="230.0" prefWidth="1019.0" />
       <TextArea fx:id="RankList" layoutX="26.0" layoutY="502.0" prefHeight="230.0" prefWidth="197.0" />
-      <Label alignment="CENTER" layoutX="26.0" layoutY="459.0" prefHeight="43.0" prefWidth="197.0" text="Á¡¼ö">
+      <Label alignment="CENTER" layoutX="26.0" layoutY="459.0" prefHeight="43.0" prefWidth="197.0" text="ì ìˆ˜">
          <font>
             <Font name="NanumGothicOTF" size="16.0" />
          </font></Label>
       <ListView layoutX="26.0" layoutY="315.0" prefHeight="136.0" prefWidth="197.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="272.0" prefHeight="43.0" prefWidth="197.0" text="Âü¿© ÀÎ¿ø" textAlignment="CENTER" textOverrun="CLIP">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="272.0" prefHeight="43.0" prefWidth="197.0" text="ì°¸ì—¬ ì¸ì›" textAlignment="CENTER" textOverrun="CLIP">
          <font>
             <Font name="NanumGothicOTF" size="15.0" />
          </font></Label>
@@ -403,38 +403,38 @@ Sample.fxml
                <children>
                   <ToolBar cacheHint="SPEED" prefHeight="53.0" prefWidth="1019.0" snapToPixel="false">
                     <items>
-                      <Button fx:id="Pencil" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setFreeDesign" prefWidth="75.0" text="±×¸®±â ">
+                      <Button fx:id="Pencil" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setFreeDesign" prefWidth="75.0" text="ê·¸ë¦¬ê¸° ">
                            <font>
                               <Font name="NanumGothicOTF" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#setErase" prefWidth="75.0" text="Áö¿ì°³">
+                        <Button mnemonicParsing="false" onAction="#setErase" prefWidth="75.0" text="ì§€ìš°ê°œ">
                            <font>
                               <Font name="NanumGothicOTF" size="14.0" />
                            </font></Button>
-                        <Button fx:id="Clear" mnemonicParsing="false" onAction="#clearCanvas" prefHeight="29.0" prefWidth="75.0" text="ºñ¿ì±â">
+                        <Button fx:id="Clear" mnemonicParsing="false" onAction="#clearCanvas" prefHeight="29.0" prefWidth="75.0" text="ë¹„ìš°ê¸°">
                            <font>
                               <Font name="NanumGothicOTF" size="14.0" />
                            </font></Button>
-                        <Button fx:id="oval" mnemonicParsing="false" onAction="#setOvalAsCurrentShape" prefHeight="29.0" prefWidth="70.0" text="Å¸¿ø">
+                        <Button fx:id="oval" mnemonicParsing="false" onAction="#setOvalAsCurrentShape" prefHeight="29.0" prefWidth="70.0" text="íƒ€ì›">
                            <font>
                               <Font name="NanumGothicOTF" size="14.0" />
                            </font></Button>
-                        <Button fx:id="line" mnemonicParsing="false" onAction="#setLineAsCurrentShape" prefHeight="29.0" prefWidth="70.0" text="¼±">
+                        <Button fx:id="line" mnemonicParsing="false" onAction="#setLineAsCurrentShape" prefHeight="29.0" prefWidth="70.0" text="ì„ ">
                            <font>
                               <Font name="NanumGothicOTF" size="14.0" />
                            </font></Button>
-                        <Button fx:id="rect" mnemonicParsing="false" onAction="#setRectangleAsCurrentShape" prefHeight="29.0" prefWidth="70.0" text="»ç°¢Çü">
+                        <Button fx:id="rect" mnemonicParsing="false" onAction="#setRectangleAsCurrentShape" prefHeight="29.0" prefWidth="70.0" text="ì‚¬ê°í˜•">
                            <font>
                               <Font name="NanumGothicOTF" size="14.0" />
                            </font></Button>
-                        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="¼± ±½±â" textAlignment="CENTER" wrappingWidth="60.12109375">
+                        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="ì„  êµµê¸°" textAlignment="CENTER" wrappingWidth="60.12109375">
                            <font>
                               <Font name="NanumGothicOTF" size="14.0" />
                            </font>
                         </Text>
                         <Slider fx:id="sizeSlider" majorTickUnit="5.0" max="20.0" min="1.0" minorTickCount="1" prefHeight="29.0" prefWidth="101.0" showTickMarks="true" />
-                        <RadioButton fx:id="fillRB" mnemonicParsing="false" text="Ã¤¿ì±â">
+                        <RadioButton fx:id="fillRB" mnemonicParsing="false" text="ì±„ìš°ê¸°">
                            <font>
                               <Font name="NanumGothicOTF" size="14.0" />
                            </font></RadioButton>
